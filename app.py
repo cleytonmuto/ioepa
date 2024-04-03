@@ -1,7 +1,8 @@
 def main():
     wget_output = ["#/bin/bash"]
     ocr_output = ["#/bin/bash"]
-    with open("1952.html", "rt", encoding="UTF-8") as file:
+    year = "1953"
+    with open(year + ".html", "rt", encoding="UTF-8") as file:
         lines = file.readlines()
         for line in lines:
             line = line[:-1]
@@ -11,7 +12,7 @@ def main():
                     if token.find("arquivos") > 0:
                         pieces = token.split("/")
                         wget_output.append("wget https://www.ioepa.com.br" + token)
-                        ocr_output.append("ocrmypdf input/" + pieces[3] + " output/" + pieces[3])
+                        ocr_output.append("ocrmypdf input/" + pieces[3] + " output/" + year + "/" + pieces[3])
     with open("input/script.sh", "wt", encoding="UTF-8") as file:
         for line in wget_output:
             file.write(line + "\n")
