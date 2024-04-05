@@ -1,14 +1,17 @@
 import os
+from dotenv import load_dotenv
 
 
 def main():
+    load_dotenv()
+    year = os.getenv("YEAR")
     wget_output = ["#/bin/bash"]
     ocr_output = ["#/bin/bash"]
-    year = "2022"
     pwd = os.getcwd()
     path = os.path.join(pwd, "input", year)
     mode = 0o775
-    os.mkdir(path, mode)
+    if not os.path.exists(path):
+        os.mkdir(path, mode)
     with open(year + ".html", "rt", encoding="UTF-8") as file:
         lines = file.readlines()
         for line in lines:
