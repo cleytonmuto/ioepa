@@ -8,10 +8,13 @@ def main():
     wget_output = ["#/bin/bash"]
     ocr_output = ["#/bin/bash"]
     pwd = os.getcwd()
-    path = os.path.join(pwd, "input", year)
+    input_path = os.path.join(pwd, "input", year)
+    output_path = os.path.join(pwd, "output", year)
     mode = 0o775
-    if not os.path.exists(path):
-        os.mkdir(path, mode)
+    if not os.path.exists(input_path):
+        os.mkdir(input_path, mode)
+    if not os.path.exists(output_path):
+        os.mkdir(output_path, mode)
     with open(year + ".html", "rt", encoding="UTF-8") as file:
         lines = file.readlines()
         for line in lines:
