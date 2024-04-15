@@ -2,3 +2,4 @@
 *.html
 .env
 *.sh
+ocr_script.sh
